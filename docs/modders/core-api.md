@@ -123,3 +123,31 @@ Patch helper:
 ```csharp
 TtHarmony.PatchAssembly(PluginGuid, typeof(Plugin).Assembly, Logger);
 ```
+
+Example patch class:
+
+```csharp
+[HarmonyPatch(typeof(GoldManager), nameof(GoldManager.ModifyGold))]
+internal static class GoldGainMultiplierPatch
+{
+    [HarmonyPrefix]
+    private static void Prefix(ref int amount)
+    {
+        if (amount > 0)
+        {
+            amount *= 2;
+        }
+    }
+
+    [HarmonyPostfix]
+    private static void Postfix(int amount, string localizedString)
+    {
+        if (amount > 0)
+        {
+            Logger.LogInfo($"ModifyGold: {amount} ({localizedString})");
+        }
+    }
+}
+```
+
+`GoldManager` lives in namespace `TJ` inside `TabletopTavern.Core.dll`. See `examples/TTMod.HarmonyExample/` for the full buildable example with config, logging, and `__state` passing between Prefix and Postfix.

@@ -14,5 +14,6 @@ Start here if you are installing or building Tabletop Tavern mods.
 
 ## Examples
 
-- `examples/TTMod.Template/`
-- `examples/TTMod.ModMenu/`
+- `examples/TTMod.Template/` — blank starter mod
+- `examples/TTMod.HarmonyExample/` — Harmony Prefix/Postfix patch example
+- `examples/TTMod.ModMenu/` — mod menu reference notes

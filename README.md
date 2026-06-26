@@ -18,6 +18,7 @@ This repository provides the shared BepInEx core used by Tabletop Tavern mods, a
 |------|---------|
 | `src/TTMod.Core/` | Shared runtime and API layer for Tabletop Tavern mods |
 | `examples/TTMod.Template/` | Starter BepInEx mod that depends on Modding Core |
+| `examples/TTMod.HarmonyExample/` | Harmony Prefix/Postfix example against game code |
 | `examples/TTMod.ModMenu/` | Reference notes for the optional in-game mod menu |
 | `docs/` | Player and mod author documentation |
 
@@ -52,6 +53,8 @@ Copy `examples/TTMod.Template/` and rename:
 - `PluginVersion`
 
 Keep the dependency on `com.tabletop-tavern.core`.
+
+For Harmony patching, build and study `examples/TTMod.HarmonyExample/`.
 
 ## Documentation
 

@@ -27,6 +27,12 @@ Build the template:
 dotnet build examples\TTMod.Template\TTMod.Template.csproj -c Release
 ```
 
+Build the Harmony example:
+
+```powershell
+dotnet build examples\TTMod.HarmonyExample\TTMod.HarmonyExample.csproj -c Release
+```
+
 ## Create a mod
 
 1. Copy `examples/TTMod.Template/`.
@@ -34,6 +40,7 @@ dotnet build examples\TTMod.Template\TTMod.Template.csproj -c Release
 3. Keep the dependency on `TTMod.Core`.
 4. Add settings with BepInEx config.
 5. Use lifecycle events from `TtLifecycle`.
+6. For Harmony patches, read `examples/TTMod.HarmonyExample/README.md`.
 
 ## Required dependency
 
@@ -65,3 +72,16 @@ Use core lifecycle events instead of each mod polling the game state.
 TtLifecycle.MainMenuEntered += OnMainMenuEntered;
 TtLifecycle.MapEntered += OnMapEntered;
 ```
+
+## Harmony patches
+
+For a working Prefix + Postfix example against real game code, see `examples/TTMod.HarmonyExample/`:
+
+- Patch target: `TJ.GoldManager.ModifyGold` in `TabletopTavern.Core.dll`
+- Apply patches once in `Awake()`:
+
+```csharp
+TtHarmony.PatchAssembly(PluginGuid, typeof(Plugin).Assembly, Logger);
+```
+
+See `docs/modders/core-api.md` and `examples/TTMod.HarmonyExample/README.md`.
