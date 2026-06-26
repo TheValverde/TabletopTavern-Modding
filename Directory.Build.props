@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <GameRoot Condition="'$(GameRoot)' == ''">$(TT_GAME_ROOT)</GameRoot>
+    <GameManagedDir>$(GameRoot)\TabletopTavern_Data\Managed</GameManagedDir>
+    <BepInExPluginsDir>$(GameRoot)\BepInEx\plugins</BepInExPluginsDir>
+  </PropertyGroup>
+</Project>

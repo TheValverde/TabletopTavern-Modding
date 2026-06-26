@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <RootNamespace>TTMod.Core</RootNamespace>
+    <AssemblyName>TTMod.Core</AssemblyName>
+    <Description>Shared runtime and API layer for Tabletop Tavern BepInEx mods</Description>
+    <Version>0.1.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <RestoreAdditionalProjectSources>
+      https://api.nuget.org/v3/index.json;
+      https://nuget.bepinex.dev/v3/index.json
+    </RestoreAdditionalProjectSources>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.0.8">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="BepInEx.Core" Version="5.4.21" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.1.0" />
+    <PackageReference Include="HarmonyX" Version="2.10.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(GameManagedDir)\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="TabletopTavern.Core">
+      <HintPath>$(GameManagedDir)\TabletopTavern.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Memori.Scenes">
+      <HintPath>$(GameManagedDir)\Memori.Scenes.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Memori.Utilities">
+      <HintPath>$(GameManagedDir)\Memori.Utilities.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(GameManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(GameManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="CopyToBepInEx" AfterTargets="Build" Condition="Exists('$(BepInExPluginsDir)')">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(BepInExPluginsDir)" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>
